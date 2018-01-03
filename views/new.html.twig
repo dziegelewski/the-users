@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block title %} New user! {% endblock %}
+
+{% block content %}
+	<form action='/success' method="POST">
+	<label>
+		First name
+		<br>
+		<input type="text" name="firstName">
+	</label>
+	<br>
+	<label>
+		Last name
+		<br>
+		<input type="text" name="lastName">
+	</label>
+	<br>
+	<label>
+		Bio
+		<br>
+		<textarea name="bio" id="" cols="30" rows="10"></textarea>
+	</label>
+	<br>
+	<input type="submit" value="Add the user">
+	</form>
+
+	<p><a href='/'>Cancel</a></p>
+{% endblock %}
