@@ -3,22 +3,25 @@ const random = require('lodash/random');
 const times = require('lodash/times');
 
 class User {
-	constructor({ id = null, firstName, lastName, bio } = {}) {
+	constructor({ id = null, firstName, lastName, bio, age } = {}) {
 		this.id = id;
 		this.firstName = firstName
 		this.lastName = lastName;
 		this.bio = bio;
+		this.age = age || 'unknown';
 	}
 
 	get fullName() {
 		return `${this.firstName} ${this.lastName}`;
 	}
 
-	randomize() {
-		this.firstName = casual.first_name;
-		this.lastName = casual.last_name;
-		this.bio = generateBio();
-		return this;
+	static createRandom() {
+		return new User({
+			firstName: casual.first_name,
+			lastName: casual.last_name,
+			bio: generateBio(),
+			age: generateRandomAge(),
+		})
 	}
 }
 

@@ -5,7 +5,10 @@
 {% block content %}
 	<h2>{{ user.fullName }}</h2>
 	<p>{{ user.bio }}</p>
-	
+	<p>Age: {{ user.age }}</p>
+
+	<p><a href="/delete/{{ user.id }}">Delete user</a></p>
+
 	<p><a href='/'>Return</a></p>
 
 {% endblock %}

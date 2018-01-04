@@ -10,18 +10,8 @@ const con = mysql.createConnection({
 
 const table = 'users';
 
-const executeQuery = function(query) {
-		return new Promise((resolve, reject) => {
-				con.query(query, (err, rows) => {
-					if (err) reject(err);
-					resolve(rows);
-				})
-		})
-		.catch(err => console.log(err))
-}
-
 const save = function(user) {
-	return executeQuery(`INSERT INTO ${table} VALUES (null, '${user.firstName}', '${user.lastName}', '${user.bio}')`);
+	return executeQuery(`INSERT INTO ${table} VALUES (null, '${user.firstName}', '${user.lastName}', '${user.bio}', '${user.age}')`);
 }
 
 const get = function(userId) {
@@ -36,6 +26,16 @@ const getAll = function() {
 
 const del = function(userId) {
 	return executeQuery(`DELETE FROM ${table} WHERE id=${userId}`);
+}
+
+const executeQuery = function(query) {
+		return new Promise((resolve, reject) => {
+				con.query(query, (err, rows) => {
+					if (err) reject(err);
+					resolve(rows);
+				})
+		})
+		.catch(err => console.log(err))
 }
 
 const createSingleUser = function(userData) {

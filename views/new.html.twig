@@ -22,8 +22,20 @@
 		<textarea name="bio" id="" cols="30" rows="10"></textarea>
 	</label>
 	<br>
+	<label>
+		Age
+		<input name="age" type="range" min="18" max="60">
+	</label>
+	<br>
 	<input type="submit" value="Add the user">
 	</form>
 
+	<form action='/success?random=1' method="POST">
+		<input type="submit" value="Or add a completely random user.">
+	</form>
+
 	<p><a href='/'>Cancel</a></p>
+
+
+
 {% endblock %}
