@@ -24,26 +24,14 @@ router.get('/new', (req, res) => {
 
 router.post('/success', 
 	async function(req, res) {
-		let user;
-
-			if (req.query.random) {
-				user = User.createRandom();
-			} else {
-		 		if (!req.body) return res.sendStatus(400);
-		 		user = new User(req.body);
-			}
-
+		const user = getPostedUser(req, res);
 		await usersDb.save(user);
 		res.render('success.html.twig', {	user })
 	}
 )
 
 router.get('/delete/:id',
-	async function(req, res, next) {
-		const userId = req.params.id;
-		await usersDb.del(userId);
-		next();
-	},
+	deleteUser,
 	getAllUsers,
 	renderMainPage
 )
@@ -57,6 +45,24 @@ function renderMainPage(req, res) {
 async function getAllUsers(req, res, next)  {
 	res.users = await usersDb.getAll();
 	next();
+}
+
+async function deleteUser(req, res, next) {
+	const userId = req.params.id;
+	await usersDb.del(userId);
+	next();
+}
+
+function getPostedUser(req, res) {
+	console.log(getPostedUser)
+	let user;
+	if (req.query.random) {
+		user = User.createRandom();
+	} else {
+ 		if (!req.body) return res.sendStatus(400);
+ 		user = new User(req.body);
+	}
+	return user;
 }
 
 module.exports = router;
