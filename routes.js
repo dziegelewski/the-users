@@ -27,7 +27,8 @@ router.get('/new', (req, res) => {
 router.post('/success', 
 	async function(req, res) {
 		const user = getPostedUser(req, res);
-		await usersDb.save(user);
+		const saving = await usersDb.save(user);
+		user.id = saving.insertId;
 		res.render('success.html.twig', {	user })
 	}
 )

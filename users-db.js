@@ -12,9 +12,10 @@ const table = 'users';
 
 const save = function(user) {
 	const values = User.dbInsertionString(user);
-	return executeQuery(`INSERT INTO ${table} VALUES (${values})`);
-}
+	return executeQuery(`INSERT INTO ${table} VALUES (${values})`)
+		.then((result) => result);
 
+}
 const get = function(userId) {
 	return executeQuery(`SELECT * FROM ${table} WHERE id=${userId}`)
 		.then(rows => createSingleUser(rows[0]));

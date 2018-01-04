@@ -4,7 +4,7 @@
 {% block title %}Success {{ action }}{% endblock %}
 
 {% block content %}
-	<h2>{{ user.fullName }} added</h2>
+	<h2><a href="user/{{ user.id }}">{{ user.fullName }}</a> successfully added</h2>
 	
 	<p><a href='/new'>Add next</a> or <a href='/'>return</a></p>
 {% endblock %}
