@@ -11,7 +11,8 @@ const con = mysql.createConnection({
 const table = 'users';
 
 const save = function(user) {
-	return executeQuery(`INSERT INTO ${table} VALUES (null, '${user.firstName}', '${user.lastName}', '${user.bio}', '${user.age}')`);
+	const values = User.dbInsertionString(user);
+	return executeQuery(`INSERT INTO ${table} VALUES (${values})`);
 }
 
 const get = function(userId) {
@@ -35,7 +36,7 @@ const executeQuery = function(query) {
 					resolve(rows);
 				})
 		})
-		.catch(err => console.log(err))
+		.catch(err => console.log(err));
 }
 
 const createSingleUser = function(userData) {

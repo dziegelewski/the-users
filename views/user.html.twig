@@ -7,8 +7,18 @@
 	<p>{{ user.bio }}</p>
 	<p>Age: {{ user.age }}</p>
 
-	<p><a href="/delete/{{ user.id }}">Delete user</a></p>
+	<p><a href="/delete/{{ user.id }}" id="delete-user">Delete user</a></p>
 
 	<p><a href='/'>Return</a></p>
+{% endblock %}
 
+{% block javascript %}
+	<script>
+		var deleteLink = document.querySelector('#delete-user');
+		deleteLink.addEventListener('click', function(e) {
+			if (!confirm('Are you sure you want to delete this user?')) {
+				e.preventDefault();
+			}
+		})
+	</script>
 {% endblock %}

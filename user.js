@@ -5,14 +5,26 @@ const times = require('lodash/times');
 class User {
 	constructor({ id = null, firstName, lastName, bio, age } = {}) {
 		this.id = id;
-		this.firstName = firstName
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.bio = bio;
-		this.age = age || 'unknown';
+		this.age = age;
 	}
 
 	get fullName() {
 		return `${this.firstName} ${this.lastName}`;
+	}
+
+	static getProperties() {
+		return {
+			minAge: 10,
+			maxAge: 99,
+			defaultAge: 30,
+		}
+	}
+
+	static dbInsertionString(user) {
+		return `null, '${user.firstName}', '${user.lastName}', '${user.bio}', '${user.age}'`;
 	}
 
 	static createRandom() {
@@ -28,7 +40,7 @@ class User {
 module.exports = User;
 
 function generateRandomAge() {
-	return random(18,50);
+	return random(User.getProperties().minAge, User.getProperties().maxAge);
 }
 
 function generateBio() {

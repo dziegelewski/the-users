@@ -3,31 +3,25 @@
 {% block title %} New user! {% endblock %}
 
 {% block content %}
+
+	{% set minAge = userProperties.minAge %}
+	{% set maxAge = userProperties.maxAge %}
+	{% set defaultAge = userProperties.defaultAge %}
+
 	<form action='/success' method="POST">
-	<label>
-		First name
-		<br>
-		<input type="text" name="firstName">
-	</label>
-	<br>
-	<label>
-		Last name
-		<br>
-		<input type="text" name="lastName">
-	</label>
-	<br>
-	<label>
-		Bio
-		<br>
-		<textarea name="bio" id="" cols="30" rows="10"></textarea>
-	</label>
-	<br>
-	<label>
-		Age
-		<input name="age" type="range" min="18" max="60">
-	</label>
-	<br>
-	<input type="submit" value="Add the user">
+		<label>
+			First name 	<input type="text" name="firstName" required>
+		</label>
+		<label>
+			Last name	<input type="text" name="lastName" required>
+		</label>
+		<label>
+			Bio	<textarea name="bio" id="" cols="30" rows="10"></textarea>
+		</label>
+		<label>
+			Age	<span id="age-value">{{ defaultAge }}</span> <input id="age-input" name="age" type="range" value="{{ defaultAge }}" min="{{ minAge }}" max="{{ maxAge }}">
+		</label>
+		<input type="submit" value="Add the user">
 	</form>
 
 	<form action='/success?random=1' method="POST">
@@ -35,7 +29,14 @@
 	</form>
 
 	<p><a href='/'>Cancel</a></p>
+{% endblock %}
 
 
-
+{% block javascript %}
+	<script src='/assets/track-input-value.js'></script>
+	<script>
+		var ageInput = document.querySelector('#age-input');
+		var ageValue = document.querySelector('#age-value');
+		trackInputValue(ageInput, ageValue);
+	</script>
 {% endblock %}

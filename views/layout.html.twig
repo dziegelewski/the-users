@@ -4,10 +4,21 @@
 	<meta charset="UTF-8">
 	<title>{{ block('title') }} - The Users </title>
 	<style>
+
 		main {
 			max-width: 800px;
 			margin: 0 auto;
 		}
+
+		label {
+			display: block;
+			margin: 1em 0;
+		}
+
+		form {
+			margin: 1em 0;
+		}
+		
 	</style>
 </head>
 <body>
@@ -17,5 +28,8 @@
 		{{ block('content') }}
 
 	</main>
+
+		{{ block('javascript') }}
+
 </body>
 </html>

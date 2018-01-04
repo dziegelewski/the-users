@@ -19,7 +19,9 @@ router.get('/user/:id', (req, res) => {
 })
 
 router.get('/new', (req, res) => {
-	res.render('new.html.twig');
+	res.render('new.html.twig', {
+		userProperties: User.getProperties()
+	});
 })
 
 router.post('/success', 
@@ -54,7 +56,6 @@ async function deleteUser(req, res, next) {
 }
 
 function getPostedUser(req, res) {
-	console.log(getPostedUser)
 	let user;
 	if (req.query.random) {
 		user = User.createRandom();

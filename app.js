@@ -6,10 +6,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
-
-app.use(urlencodedParser);
 app.set('view engine', 'twig');
 
-app.listen(PORT);
- 
+app.use(urlencodedParser);
+app.use('/assets', express.static('public'))
 app.use('/', routes);
+
+app.listen(PORT);
