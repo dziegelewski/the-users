@@ -2,10 +2,10 @@ const User = require('./user');
 const mysql = require('mysql');
 
 const con = mysql.createConnection({
-		host: 'localhost',
-		user: 'root',
-		database: 'the_users',
-		password: require('./db-password'),
+		host: process.env.host || 'localhost',
+		user: process.env.user || 'root',
+		database: process.env.database || 'the_users',
+		password: process.env.password,
 })
 
 const table = 'users';
