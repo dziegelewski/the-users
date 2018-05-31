@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const usersDb = require('./users-db');
+const usersDb = require('./db/users-db');
 const User = require('./user');
 
 router.use('/user/:id',
