@@ -1,7 +1,7 @@
 const User = require('./user');
 const mysql = require('mysql');
 
-const con = mysql.createConnection({
+const con = mysql.createConnection(process.env.MYSQL_URI || {
 		host: process.env.host || 'localhost',
 		user: process.env.user || 'root',
 		database: process.env.database || 'the_users',
